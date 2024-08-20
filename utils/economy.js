@@ -44,7 +44,7 @@ async function claimDailyReward(userId) {
         });
         return reward;
     } else {
-        return 0; // alr claimed
+        return 0; // alr claimed tday
     }
 }
 
@@ -88,8 +88,32 @@ async function stealCoins(userId, targetId) {
 
         return stealAmount;
     } else {
-        return 0; // target doesnt exist
+        return 0; // brokie- or doesnt exist
     }
+}
+
+async function playSlots(userId) {
+    const userDoc = doc(db, 'users', userId);
+    const userSnapshot = await getDoc(userDoc);
+    const balance = userSnapshot.exists() ? userSnapshot.data().balance || 0 : 0;
+
+    if (balance < 50) {
+        return { result: 'insufficient', balance };
+    }
+
+    const emojis = ['🍒', '🍋', '🍊', '🍉', '🍇', '7️⃣', '💎'];
+    const result = [];
+    for (let i = 0; i < 3; i++) {
+        result.push(emojis[Math.floor(Math.random() * emojis.length)]);
+    }
+
+    let payout = 0;
+    if (result[0] === result[1] && result[1] === result[2]) {
+        payout = 200; // winner
+    }
+
+    await updateDoc(userDoc, { balance: increment(-50 + payout) });
+    return { result, payout, balance: balance - 50 + payout };
 }
 
 module.exports = {
@@ -99,4 +123,5 @@ module.exports = {
     getLeaderboard,
     getInventory,
     stealCoins,
+    playSlots,
 };
