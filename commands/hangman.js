@@ -1,9 +1,26 @@
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType } = require('discord.js');
 
+// todo add more words
+const wordDatabase = {
+    animals: ['elephant', 'tiger', 'giraffe', 'kangaroo', 'penguin'],
+    fruits: ['apple', 'banana', 'cherry', 'orange', 'grape'],
+    countries: ['canada', 'brazil', 'germany', 'india', 'japan'],
+};
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('hangman')
-        .setDescription('Play a game of hangman')
+        .setDescription('Play a game of hangman(limited words for now sorry :/)')
+        .addStringOption(option =>
+            option.setName('category')
+                .setDescription('Choose a word category')
+                .setRequired(true)
+                .addChoices(
+                    { name: 'Animals', value: 'animals' },
+                    { name: 'Fruits', value: 'fruits' },
+                    { name: 'Countries', value: 'countries' }
+                )
+        )
         .addStringOption(option =>
             option.setName('mode')
                 .setDescription('Choose game mode')
@@ -14,9 +31,9 @@ module.exports = {
                 )
         ),
     async execute(interaction) {
+        const category = interaction.options.getString('category');
         const mode = interaction.options.getString('mode');
-        const words = ['apple', 'banana', 'cherry', 'grape', 'orange'];
-        let wordToGuess = words[Math.floor(Math.random() * words.length)];
+        let wordToGuess = wordDatabase[category][Math.floor(Math.random() * wordDatabase[category].length)];
         let guessedWord = '_'.repeat(wordToGuess.length).split('');
         let attemptsLeft = 6;
         let guessedLetters = [];
@@ -43,7 +60,7 @@ module.exports = {
         );
 
         const gameMessage = await interaction.reply({
-            content: `🎮 **Hangman**\n\n${guessedWord.join(' ')}\n\nAttempts left: ${attemptsLeft}`,
+            content: `🎮 **Hangman**\n\n${guessedWord.join(' ')}\n\nAttempts left: ${attemptsLeft} (Category: **${category}**)`,
             components: [row],
             fetchReply: true,
         });
@@ -93,7 +110,7 @@ module.exports = {
 
                     currentPlayer = currentPlayer === interaction.user.id ? otherPlayer : interaction.user.id;
                     await gameMessage.edit({
-                        content: `🎮 **Hangman**\n\n${guessedWord.join(' ')}\n\nAttempts left: ${attemptsLeft}`,
+                        content: `🎮 **Hangman**\n\n${guessedWord.join(' ')}\n\nAttempts left: ${attemptsLeft} (Category: **${category}**)`,
                         components: [row],
                     });
                 }
