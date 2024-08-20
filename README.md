@@ -14,7 +14,7 @@ Ready to make some waves? 🌊 [**Invite Wave to your server now!**](https://dis
 
 ---
 
-💙 **Developed with care by @arnavravinder.
+💙 Developed with love by @arnavravinder.
 
 ---
 
