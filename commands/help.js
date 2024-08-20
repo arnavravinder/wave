@@ -14,7 +14,8 @@ module.exports = {
                 '⚠️ /warn - Warn a user',
                 '🧹 /clear - Clear messages in a channel',
                 '🔒 /lock - Lock a channel',
-                '🔓 /unlock - Unlock a channel'
+                '🔓 /unlock - Unlock a channel',
+                '🔁 /log - Enable or disable logging'
             ],
             music: [
                 '🎶 /play - Play music',
@@ -36,7 +37,8 @@ module.exports = {
                 '🎒 /inventory - View your inventory',
                 '🎰 /slots - Play a slot machine game',
                 '🎲 /gamble - Gamble your coins',
-                '💸 /give - Give coins to another user'
+                '💸 /give - Give coins to another user',
+                '🕵️‍♂️ /steal - Steal coins from another user'
             ],
             fun: [
                 '🎱 /8ball - Ask the magic 8-ball a question',
@@ -46,7 +48,8 @@ module.exports = {
                 '🔢 /guessnumber - Guess the number game',
                 '❓ /trivia - Play a trivia game',
                 '✏️ /hangman - Play hangman',
-                '❌⭕ /tictactoe - Play tic-tac-toe'
+                '❌⭕ /tictactoe - Play tic-tac-toe',
+                '👋 /slap - Slap another user'
             ],
             utility: [
                 'ℹ️ /info - Get bot/server info',
@@ -57,7 +60,18 @@ module.exports = {
                 '📊 /poll - Create a poll',
                 '💤 /afk - Set yourself as AFK',
                 '🌐 /translate - Translate a message',
-                '📚 /define - Get the definition of a word'
+                '📚 /define - Get the definition of a word',
+                '🔗 /invite - Get the bot invite link',
+                '💡 /inspire - Get a random inspirational quote',
+                '🐱 /catfact - Get a random cat fact',
+                '🐶 /dogfact - Get a random dog fact',
+                '😂 /dadjoke - Get a random dad joke',
+                '🪙 /coin - Flip a virtual coin',
+                '💪 /motivate - Get a motivational message',
+                '🧠 /riddle - Receive a riddle to solve',
+                '💡 /advice - Get random life advice',
+                '📚 /urban - Look up a term in Urban Dictionary',
+                '🧠 /fact - Get a random fact'
             ]
         };
 
