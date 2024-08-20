@@ -20,15 +20,19 @@ function playMusic(guild, song) {
         serverQueue.songs.shift();
         playMusic(guild, serverQueue.songs[0]);
     });
+
+    serverQueue.player.on(AudioPlayerStatus.Playing, () => {
+        serverQueue.textChannel.send(`🎶 Now playing: **${song.title}**`);
+    });
 }
 
 async function execute(interaction) {
     const voiceChannel = interaction.member.voice.channel;
-    if (!voiceChannel) return interaction.reply('You need to be in a voice channel to play music!');
+    if (!voiceChannel) return interaction.reply('❌ You need to be in a voice channel to play music!');
     
     const permissions = voiceChannel.permissionsFor(interaction.client.user);
     if (!permissions.has('Connect') || !permissions.has('Speak')) {
-        return interaction.reply('I need permissions to join and speak in your voice channel!');
+        return interaction.reply('⚠️ I need permissions to join and speak in your voice channel!');
     }
 
     const songInfo = await ytdl.getInfo(interaction.options.getString('song'));
@@ -41,6 +45,7 @@ async function execute(interaction) {
 
     if (!serverQueue) {
         const queueContruct = {
+            textChannel: interaction.channel,
             voiceChannel,
             player: createAudioPlayer(),
             connection: joinVoiceChannel({
@@ -55,26 +60,26 @@ async function execute(interaction) {
         queueContruct.songs.push(song);
         playMusic(interaction.guild, queueContruct.songs[0]);
 
-        interaction.reply(`Now playing: **${song.title}**`);
+        interaction.reply(`🎶 Now playing: **${song.title}**`);
     } else {
         serverQueue.songs.push(song);
-        interaction.reply(`**${song.title}** has been added to the queue!`);
+        interaction.reply(`✅ **${song.title}** has been added to the queue!`);
     }
 }
 
 function stop(interaction) {
     const serverQueue = queue.get(interaction.guild.id);
-    if (!serverQueue) return interaction.reply('There is no song to stop!');
+    if (!serverQueue) return interaction.reply('❌ There is no song to stop!');
     serverQueue.songs = [];
     serverQueue.player.stop();
-    interaction.reply('Music stopped.');
+    interaction.reply('⏹️ Music stopped.');
 }
 
 function skip(interaction) {
     const serverQueue = queue.get(interaction.guild.id);
-    if (!serverQueue) return interaction.reply('There is no song to skip!');
+    if (!serverQueue) return interaction.reply('❌ There is no song to skip!');
     serverQueue.player.stop();
-    interaction.reply('Skipped the current track.');
+    interaction.reply('⏭️ Skipped the current track.');
 }
 
 module.exports = {
