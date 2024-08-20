@@ -7,5 +7,6 @@ module.exports = {
         .setDescription('Stop the music and leave the voice channel'),
     async execute(interaction) {
         await stop(interaction);
+        await interaction.reply('⏹️ Stopped the music.');
     }
 };

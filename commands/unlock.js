@@ -7,6 +7,6 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
     async execute(interaction) {
         await interaction.channel.permissionOverwrites.edit(interaction.guild.roles.everyone, { SendMessages: true });
-        await interaction.reply('Channel has been unlocked.');
+        await interaction.reply('🔓 Channel has been unlocked.');
     }
 };

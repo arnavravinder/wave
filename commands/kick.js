@@ -16,9 +16,9 @@ module.exports = {
 
         if (member) {
             await member.kick();
-            await interaction.reply(`${target.username} has been kicked from the server.`);
+            await interaction.reply(`👢 **${target.username}** has been kicked from the server.`);
         } else {
-            await interaction.reply('That user is not in this server.');
+            await interaction.reply('🚫 That user is not in this server.');
         }
     }
 };

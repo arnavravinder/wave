@@ -14,11 +14,11 @@ module.exports = {
         const member = interaction.guild.members.cache.get(user.id);
 
         await interaction.reply(
-            `**User Info**\n` +
-            `Username: ${user.username}\n` +
-            `Tag: ${user.tag}\n` +
-            `Joined Server: ${member.joinedAt.toDateString()}\n` +
-            `Account Created: ${user.createdAt.toDateString()}`
+            `👤 **User Info**\n` +
+            `🆔 Username: ${user.username}\n` +
+            `#️⃣ Tag: ${user.tag}\n` +
+            `📅 Joined Server: ${member.joinedAt.toDateString()}\n` +
+            `📅 Account Created: ${user.createdAt.toDateString()}`
         );
     }
 };

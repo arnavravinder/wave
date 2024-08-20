@@ -7,5 +7,6 @@ module.exports = {
         .setDescription('Skip the current track'),
     async execute(interaction) {
         await skip(interaction);
+        await interaction.reply('⏭️ Skipped the current track.');
     }
 };

@@ -8,6 +8,6 @@ module.exports = {
     async execute(interaction) {
         const user = interaction.user;
         const balance = await getBalance(user.id);
-        await interaction.reply(`${user.username}, your balance is ${balance} coins.`);
+        await interaction.reply(`💰 **${user.username}**, your balance is **${balance}** coins.`);
     }
 };

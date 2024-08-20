@@ -18,10 +18,10 @@ module.exports = {
         const time = interaction.options.getString('time');
         const message = interaction.options.getString('message');
 
-        await interaction.reply(`Reminder set for ${time} minutes.`);
+        await interaction.reply(`⏰ Reminder set for ${time} minutes.`);
 
         setTimeout(async () => {
-            await interaction.followUp(`${interaction.user}, reminder: ${message}`);
+            await interaction.followUp(`⏲️ **${interaction.user.username}**, reminder: ${message}`);
         }, time * 60000);
     }
 };

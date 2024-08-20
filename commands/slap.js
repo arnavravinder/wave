@@ -9,8 +9,8 @@ module.exports = {
                 .setDescription('The user you want to slap')
                 .setRequired(true)
         ),
-    async execute(interaction) { //todo image manipulation to add slapped user pfp etc
+    async execute(interaction) {
         const target = interaction.options.getUser('target');
-        await interaction.reply(`${interaction.user.username} just slapped ${target.username}! 👋`);
+        await interaction.reply(`👋 **${interaction.user.username}** just slapped **${target.username}**!`);
     }
 };

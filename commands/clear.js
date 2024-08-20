@@ -13,10 +13,10 @@ module.exports = {
     async execute(interaction) {
         const amount = interaction.options.getInteger('amount');
         if (amount < 1 || amount > 100) {
-            return interaction.reply('Please provide a number between 1 and 100.');
+            return interaction.reply('🚫 Please provide a number between 1 and 100.');
         }
 
         await interaction.channel.bulkDelete(amount, true);
-        await interaction.reply(`Cleared ${amount} messages.`);
+        await interaction.reply(`🧹 Cleared **${amount}** messages.`);
     }
 };

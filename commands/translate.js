@@ -20,6 +20,6 @@ module.exports = {
         const language = interaction.options.getString('language');
 
         const translated = await translate(text, { to: language });
-        await interaction.reply(`Translation: ${translated.text}`);
+        await interaction.reply(`🌐 Translation: ${translated.text}`);
     }
 };

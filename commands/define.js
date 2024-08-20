@@ -16,10 +16,10 @@ module.exports = {
         const data = await response.json();
 
         if (data.title) {
-            return interaction.reply('Could not find a definition for that word.');
+            return interaction.reply('❌ Could not find a definition for that word.');
         }
 
         const definition = data[0].meanings[0].definitions[0].definition;
-        await interaction.reply(`**${word}**: ${definition}`);
+        await interaction.reply(`📚 **${word}**: ${definition}`);
     }
 };

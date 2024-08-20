@@ -8,6 +8,10 @@ module.exports = {
     async execute(interaction) {
         const user = interaction.user;
         const dailyReward = await claimDailyReward(user.id);
-        await interaction.reply(`${user.username}, you claimed your daily reward of ${dailyReward} coins!`);
+        if (dailyReward > 0) {
+            await interaction.reply(`🎉 **${user.username}**, you claimed your daily reward of **${dailyReward}** coins!`);
+        } else {
+            await interaction.reply('⏳ You have already claimed your daily reward today. Come back tomorrow!');
+        }
     }
 };

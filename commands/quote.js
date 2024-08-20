@@ -8,6 +8,6 @@ module.exports = {
     async execute(interaction) {
         const response = await fetch('https://api.quotable.io/random');
         const data = await response.json();
-        await interaction.reply(`*"${data.content}"*\n- ${data.author}`);
+        await interaction.reply(`💬 *"${data.content}"*\n- ${data.author}`);
     }
 };

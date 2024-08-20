@@ -24,6 +24,11 @@ async function getBalance(userId) {
     }
 }
 
+async function updateBalance(userId, amount) {
+    const userDoc = doc(db, 'users', userId);
+    await updateDoc(userDoc, { balance: increment(amount) });
+}
+
 async function claimDailyReward(userId) {
     const userDoc = doc(db, 'users', userId);
     const userSnapshot = await getDoc(userDoc);
@@ -67,9 +72,31 @@ async function getInventory(userId) {
     }
 }
 
+async function stealCoins(userId, targetId) {
+    const userDoc = doc(db, 'users', userId);
+    const targetDoc = doc(db, 'users', targetId);
+    const targetSnapshot = await getDoc(targetDoc);
+
+    if (targetSnapshot.exists()) {
+        const targetBalance = targetSnapshot.data().balance || 0;
+        const stealAmount = Math.min(Math.floor(Math.random() * 50) + 1, targetBalance);
+
+        if (stealAmount > 0) {
+            await updateDoc(targetDoc, { balance: increment(-stealAmount) });
+            await updateDoc(userDoc, { balance: increment(stealAmount) });
+        }
+
+        return stealAmount;
+    } else {
+        return 0; // target doesnt exist
+    }
+}
+
 module.exports = {
     getBalance,
+    updateBalance,
     claimDailyReward,
     getLeaderboard,
     getInventory,
+    stealCoins,
 };

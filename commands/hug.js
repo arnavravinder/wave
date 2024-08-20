@@ -11,6 +11,6 @@ module.exports = {
         ),
     async execute(interaction) {
         const target = interaction.options.getUser('target');
-        await interaction.reply(`${interaction.user.username} gives a warm hug to ${target.username}! 🤗`);
+        await interaction.reply(`🤗 **${interaction.user.username}** gives a warm hug to **${target.username}**!`);
     }
 };

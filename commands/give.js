@@ -22,11 +22,11 @@ module.exports = {
 
         const balance = await getBalance(user.id);
         if (amount > balance) {
-            return interaction.reply('You do not have enough coins to give that amount.');
+            return interaction.reply('🚫 You do not have enough coins to give that amount.');
         }
 
         await updateBalance(user.id, -amount);
         await updateBalance(target.id, amount);
-        await interaction.reply(`You gave ${amount} coins to ${target.username}.`);
+        await interaction.reply(`💸 You gave ${amount} coins to ${target.username}.`);
     }
 };

@@ -4,7 +4,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('ban')
         .setDescription('Bans a member from the server')
-        .addUserOption(option => 
+        .addUserOption(option =>
             option.setName('target')
                 .setDescription('The member to ban')
                 .setRequired(true)
@@ -16,9 +16,9 @@ module.exports = {
 
         if (member) {
             await member.ban();
-            await interaction.reply(`${target.username} has been banned from the server.`);
+            await interaction.reply(`🔨 **${target.username}** has been banned from the server.`);
         } else {
-            await interaction.reply('That user is not in this server.');
+            await interaction.reply('🚫 That user is not in this server.');
         }
     }
 };

@@ -10,22 +10,22 @@ module.exports = {
                 .setRequired(true)
         ),
     async execute(interaction) {
-        const choices = ['rock', 'paper', 'scissors'];
+        const choices = ['🪨 rock', '📄 paper', '✂️ scissors'];
         const userChoice = interaction.options.getString('choice').toLowerCase();
         const botChoice = choices[Math.floor(Math.random() * choices.length)];
 
-        if (!choices.includes(userChoice)) {
+        if (!choices.map(choice => choice.split(' ')[1]).includes(userChoice)) {
             return interaction.reply('Please choose rock, paper, or scissors.');
         }
 
-        if (userChoice === botChoice) {
+        if (userChoice === botChoice.split(' ')[1]) {
             return interaction.reply(`It's a tie! We both chose ${botChoice}.`);
         }
 
-        const win = (userChoice === 'rock' && botChoice === 'scissors') ||
-                    (userChoice === 'paper' && botChoice === 'rock') ||
-                    (userChoice === 'scissors' && botChoice === 'paper');
+        const win = (userChoice === 'rock' && botChoice.split(' ')[1] === 'scissors') ||
+                    (userChoice === 'paper' && botChoice.split(' ')[1] === 'rock') ||
+                    (userChoice === 'scissors' && botChoice.split(' ')[1] === 'paper');
 
-        await interaction.reply(win ? `You win! I chose ${botChoice}.` : `You lose! I chose ${botChoice}.`);
+        await interaction.reply(win ? `🎉 You win! I chose ${botChoice}.` : `😢 You lose! I chose ${botChoice}.`);
     }
 };

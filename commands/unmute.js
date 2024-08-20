@@ -16,9 +16,9 @@ module.exports = {
 
         if (member) {
             await member.voice.setMute(false);
-            await interaction.reply(`${target.username} has been unmuted.`);
+            await interaction.reply(`🔊 **${target.username}** has been unmuted.`);
         } else {
-            await interaction.reply('That user is not in this server.');
+            await interaction.reply('🚫 That user is not in this server.');
         }
     }
 };
